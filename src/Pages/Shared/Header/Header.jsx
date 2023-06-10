@@ -14,7 +14,7 @@ const Header = () => {
     </>
 
     return (
-        <div className="navbar bg-base-200">
+        <div className="navbar fixed z-10 bg-opacity-40 bg-black max-w-screen-xl text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -24,8 +24,8 @@ const Header = () => {
                         {navLists}
                     </ul>
                 </div>
-                <img className='w-20' src={Logo} alt="" />
-                <h2 className='text-4xl font-medium'>FLLS</h2>
+                <Link to="/"><img className='w-20' src={Logo} alt="" /></Link>
+                <h2 className='text-4xl font-medium ml-2'>FLLS</h2>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
