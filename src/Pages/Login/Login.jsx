@@ -9,6 +9,10 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data)
+
+        const email = data.email;
+        const password = data.password;
+        console.log(email, password);
     };
 
     return (
@@ -85,7 +89,7 @@ const Login = () => {
 
                 <p className='px-6 text-sm text-center text-gray-400'>
                     Do not have an account yet?{' '}
-                    <Link to='/signup' className='hover:underline hover:text-rose-500 text-gray-600'>Sign up</Link>
+                    <Link to='/register' className='hover:underline hover:text-rose-500 text-gray-600'>Sign up</Link>
                 </p>
             </div>
         </div>
