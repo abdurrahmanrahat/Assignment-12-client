@@ -108,10 +108,13 @@ const Register = () => {
                                 id='password'
                                 // ref={passwordRef}
                                 placeholder='*******'
-                                {...register("password", { required: true, maxLength: 80 })}
+                                {...register("password", { required: true, minLength: 6, pattern: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-])/ })}
                                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#0B0016] bg-gray-200 text-gray-900'
                             />
                             {errors.password?.type === 'required' && <p className="text-red-600 text-xl">Provide your Password</p>}
+                            {errors.password?.type === 'minLength' && <p className='text-red-600'>Password must be 6 characters</p>}
+                            {errors.password?.type === 'pattern' && <p className='text-red-600'>Password must have one uppercase, lowercase & symbol</p>}
+
                             <span className="absolute top-10 right-4 z-10 cursor-pointer">{toggleIcon}</span>
                         </div>
 
@@ -141,11 +144,7 @@ const Register = () => {
                         <input className='bg-[#0B0016] w-full rounded-md py-3 text-white' type="submit" value="Sign Up" />
                     </div>
                 </form>
-                <div className='space-y-1'>
-                    <button className='text-xs hover:underline hover:text-rose-500 text-gray-400'>
-                        Forgot password?
-                    </button>
-                </div>
+
                 <div className='flex items-center pt-4 space-x-1'>
                     <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                     <p className='px-3 text-sm dark:text-gray-400'>
