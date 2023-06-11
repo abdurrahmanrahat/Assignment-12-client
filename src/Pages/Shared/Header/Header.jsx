@@ -1,17 +1,27 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../../assets/logo.png'
+import { useContext } from 'react';
+import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Header = () => {
 
+    const { user, logOut } = useContext(AuthContext);
 
     const navLists = <>
         <li className='text-lg'><Link to='/'>Home</Link></li>
         <li className='text-lg'><Link to='/instructors'>Instructors</Link></li>
         <li className='text-lg'><Link to='/classes'>Classes</Link></li>
-        {/* {
-            user && <li><Link to='/dashboard '>Dashboard </Link></li>
-        } */}
+        {
+            user && <li className='text-lg'><Link to='/dashboard '>Dashboard </Link></li>
+        }
     </>
+
+    // Handle Logout
+    const handleLogout = () => {
+        logOut()
+            .then(() => { })
+            .catch(err => console.log(err))
+    }
 
     return (
         <div className="navbar fixed z-10 bg-opacity-40 bg-black max-w-screen-xl text-white">
@@ -36,9 +46,16 @@ const Header = () => {
                 {/* {
                     user && <img src={} alt="" />
                 } */}
-                <Link to='/login'>
-                    <button className="btn btn-active text-lg bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Login</button>
-                </Link>
+                {
+                    user ? <>
+                        <img className='w-12 rounded-full mr-4' src={user.photoURL} alt="" />
+                        <button onClick={handleLogout} className="btn btn-active text-lg bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">logOut</button>
+                    </> :
+                        <Link to='/login'>
+                            <button className="btn btn-active text-lg bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Login</button>
+                        </Link>
+                }
+
             </div>
         </div>
     );

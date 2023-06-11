@@ -1,14 +1,23 @@
 import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import usePasswordToggle from "../../Hooks/usePasswordToggle";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+
+const image_hoisting_token = import.meta.env.VITE_image_uplode_token;
 
 const Register = () => {
     const [passwordInputType, toggleIcon] = usePasswordToggle();
 
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate();
+
     // const [disabled, setDisabled] = useState(null);
     // const passwordRef = useRef();
     // const confirmPassRef = useRef();
+
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hoisting_token}`;
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -17,8 +26,42 @@ const Register = () => {
         const name = data.name;
         const email = data.email;
         const password = data.password;
-        const photo = data.photo;
-        console.log(name, email, password, photo);
+        console.log(name, email, password);
+
+        const formData = new FormData();
+        formData.append('image', data.photo[0])
+
+
+
+        // User Create
+        createUser(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+
+                fetch(img_hosting_url, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(imgResponse => {
+                        if (imgResponse.success) {
+                            console.log(imgResponse.data.display_url);
+                            const photo = imgResponse.data.display_url;
+                            // Update Profile
+                            updateUserProfile(name, photo)
+                                .then(() => {
+                                    navigate('/');
+                                })
+                                .catch(err => {
+                                    console.log(err);
+                                })
+                        }
+                    })
+            })
+            .catch(err => {
+                console.log(err);
+            })
 
     };
 

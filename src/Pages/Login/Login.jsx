@@ -1,10 +1,20 @@
 import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import usePasswordToggle from "../../Hooks/usePasswordToggle";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const [passwordInputType, toggleIcon] = usePasswordToggle();
+
+    const { signIn } = useContext(AuthContext);
+    // for redirect purpose
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
 
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
@@ -13,6 +23,23 @@ const Login = () => {
         const email = data.email;
         const password = data.password;
         console.log(email, password);
+
+        // sign in user
+        signIn(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'User successfully login',
+                    icon: 'success',
+                    confirmButtonText: 'Okay'
+                });
+                navigate(from, { replace: true });
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
     };
 
     return (
@@ -68,7 +95,7 @@ const Login = () => {
                         <input className='bg-[#0B0016] w-full rounded-md py-3 text-white' type="submit" value="Login" />
                     </div>
                 </form>
-                
+
                 <div className='flex items-center pt-4 space-x-1'>
                     <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                     <p className='px-3 text-sm dark:text-gray-400'>
