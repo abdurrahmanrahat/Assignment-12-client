@@ -6,6 +6,9 @@ import {
 } from "react-router-dom";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Login/Register";
+import Dashboard from "../Layout/Dashboard";
+import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses";
+import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +29,21 @@ const router = createBrowserRouter([
     {
         path: 'register',
         element: <Register></Register>
+    },
+    {
+        path: 'dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            // Admin Route
+            {
+                path: 'manageclasses',
+                element: <ManageClasses></ManageClasses>
+            },
+            {
+                path: 'manageusers',
+                element: <ManageUsers></ManageUsers>
+            }
+        ]
     }
 ]);
 
