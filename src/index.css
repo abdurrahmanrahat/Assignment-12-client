@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.drawer a.active{
+    color: #FFBD00;
+    font-size: medium;
+}
+
+/* .drawer a:hover{
+    color: #FFBD00;
+    background-color: transparent;
+} */
