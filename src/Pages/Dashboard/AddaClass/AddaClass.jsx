@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const img_hosting_tkn = import.meta.env.VITE_image_uplode_token;
 
@@ -11,7 +12,7 @@ const AddaClass = () => {
 
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_tkn}`;
 
-    const { register, handleSubmit } = useForm();
+    const { register, reset, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data);
 
@@ -35,9 +36,31 @@ const AddaClass = () => {
                         instructorName,
                         instructorEmail,
                         price: parseFloat(price),
-                        seats: parseFloat(seats)
+                        seats: parseFloat(seats),
+                        totalES: 0
                     }
                     console.log(newClass);
+                    // send newClass to the db
+                    fetch('http://localhost:5000/classes', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(newClass)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.insertedId){
+                            reset();
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'New Class successfully pushed',
+                                icon: 'success',
+                                confirmButtonText: 'Cool'
+                                // setTimeout: 1000
+                            })
+                        }
+                    })
                 }
             })
 
@@ -95,7 +118,7 @@ const AddaClass = () => {
                         <label className="label">
                             <span className="label-text font-semibold">Available Seats*</span>
                         </label>
-                        <input type="text" placeholder="00" defaultValue={0} {...register("seats", { required: true })} className="input input-bordered w-full " readOnly />
+                        <input type="text" placeholder="00" {...register("seats", { required: true })} className="input input-bordered w-full " />
                     </div>
 
                     {/* Available Seats Field */}

@@ -1,27 +1,28 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../Provider/AuthProvider";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import { useEffect } from 'react';
+import ClassesCoverImg from '../../assets/classes-page-cover.jpg';
+import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import { useState } from 'react';
 
-const MyClasses = () => {
-    const [instructorClasses, setInstructorClasses] = useState([]);
-    const { user } = useContext(AuthContext);
-
-    const feedback = false;
+const Classes = () => {
+    const [allClasses, setAllClasses] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/classes?email=${user?.email}`, {
+        fetch('http://localhost:5000/classes', {
             method: 'GET'
         })
             .then(res => res.json())
-            .then(data => setInstructorClasses(data))
-    }, [user])
+            .then(data => setAllClasses(data))
+    }, [])
 
     return (
         <div>
-            {/* Title */}
+            <div>
+                <img src={ClassesCoverImg} className=' h-screen w-screen' alt="" />
+            </div>
+            {/* title */}
             <SectionTitle
-                subHeading='Here are listed'
-                heading='Your Classes'
+                subHeading='Select your desired'
+                heading='few classes'
             ></SectionTitle>
 
             {/* Table Here */}
@@ -33,17 +34,15 @@ const MyClasses = () => {
                             <th className="py-4">#</th>
                             <th className="text-left">Photo</th>
                             <th className="text-left">Class Name</th>
-                            <th className="text-left">Status</th>
-                            <th className="text-left">TotalEStudents</th>
+                            <th className="text-left">Instructor Name</th>
+                            <th className="text-left">Available Seats</th>
+                            <th className="text-right pe-4">Price</th>
                             <th className="text-left">Action</th>
-                            {
-                                feedback && <th className="text-left">Action</th>
-                            }
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            instructorClasses.map((sinClass, index) => <tr
+                            allClasses.map((sinClass, index) => <tr
                                 key={index}
                                 className="bg-gradient-to-r from-[#FFBD00] to-[#F75DC8] text-white ">
                                 <td>
@@ -63,14 +62,12 @@ const MyClasses = () => {
                                         <span className="badge bg-yellow-400 text-lg">{sinClass.classNameSpe}</span>
                                     </div>
                                 </td>
-                                <td className="text-lg">None</td>
-                                <td className="text-lg">{sinClass.totalES}</td>
+                                <td className="text-lg">{sinClass.instructorName}</td>
+                                <td className="text-lg">{sinClass.seats}</td>
+                                <td className="text-lg text-right">${sinClass.price}</td>
                                 <td>
-                                    <button className="btn btn-ghost btn-sm bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Update</button>
+                                    <button className="btn btn-ghost btn-sm bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Select</button>
                                 </td>
-                                {
-                                    feedback && <td></td>
-                                }
                             </tr>)
                         }
                     </tbody>
@@ -80,4 +77,4 @@ const MyClasses = () => {
     );
 };
 
-export default MyClasses;
+export default Classes;

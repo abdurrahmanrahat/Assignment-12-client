@@ -43,9 +43,6 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {/* {
-                    user && <img src={} alt="" />
-                } */}
                 {
                     user ? <>
                         <img className='w-12 rounded-full mr-4' src={user.photoURL} alt="" />
