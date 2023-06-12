@@ -1,9 +1,29 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaBars, FaBook, FaHome, FaListAlt, FaPlusCircle, FaUsers } from "react-icons/fa";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 
 const Dashboard = () => {
-    const isAdmin = true;
+    const [users, setUsers] = useState();
+    const { user } = useContext(AuthContext);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/users', {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then(data => setUsers(data))
+    }, [])
+
+    const roleUser = users?.filter(u => u.email === user.email)
+    const matchUserRole = roleUser?.[0]?.role;
+    console.log(matchUserRole);
+
+
+    const isAdmin = matchUserRole === 'admin';
     const isInstructor = false;
     const isStudent = false;
 

@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
-import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import usePasswordToggle from "../../Hooks/usePasswordToggle";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import GoogleSignIn from "../../components/GoogleSignIn/GoogleSignIn";
 
 const Login = () => {
     const [passwordInputType, toggleIcon] = usePasswordToggle();
@@ -105,10 +105,7 @@ const Login = () => {
                 </div>
 
                 {/* Google Signin Button */}
-                <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
-                    <FaGoogle size={32} />
-                    <p>Continue with Google</p>
-                </div>
+                <GoogleSignIn></GoogleSignIn>
 
                 <p className='px-6 text-sm text-center text-gray-400'>
                     Do not have an account yet?{' '}

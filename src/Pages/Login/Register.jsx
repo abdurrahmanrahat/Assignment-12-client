@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
-import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import usePasswordToggle from "../../Hooks/usePasswordToggle";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import GoogleSignIn from "../../components/GoogleSignIn/GoogleSignIn";
+import Swal from "sweetalert2";
 
 const image_hoisting_token = import.meta.env.VITE_image_uplode_token;
 
@@ -31,8 +32,6 @@ const Register = () => {
         const formData = new FormData();
         formData.append('image', data.photo[0])
 
-
-
         // User Create
         createUser(email, password)
             .then(result => {
@@ -51,7 +50,32 @@ const Register = () => {
                             // Update Profile
                             updateUserProfile(name, photo)
                                 .then(() => {
-                                    navigate('/');
+                                    const savedUser = {
+                                        name: data.name,
+                                        email: data.email,
+                                        role: 'student'
+                                    }
+                                    fetch('http://localhost:5000/users', {
+                                        method: 'POST',
+                                        headers: {
+                                            'content-type': 'application/json'
+                                        },
+                                        body: JSON.stringify(savedUser)
+                                    })
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            if (data.insertedId) {
+                                                // 
+                                                // reset();
+                                                Swal.fire({
+                                                    title: 'Success!',
+                                                    text: 'User successfully signup',
+                                                    icon: 'success',
+                                                    confirmButtonText: 'Cool'
+                                                })
+                                                navigate('/');
+                                            }
+                                        })
                                 })
                                 .catch(err => {
                                     console.log(err);
@@ -197,10 +221,7 @@ const Register = () => {
                 </div>
 
                 {/* Google Signin Button */}
-                <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
-                    <FaGoogle size={32} />
-                    <p>Continue with Google</p>
-                </div>
+                <GoogleSignIn></GoogleSignIn>
 
                 <p className='px-6 text-sm text-center text-gray-400'>
                     Already have an account?{' '}
