@@ -3,9 +3,9 @@ import { FaBars, FaBook, FaHome, FaListAlt, FaPlusCircle, FaUsers } from "react-
 
 
 const Dashboard = () => {
-    const isAdmin = false;
+    const isAdmin = true;
     const isInstructor = false;
-    const isStudent = true;
+    const isStudent = false;
 
     const navLists = <>
         {
