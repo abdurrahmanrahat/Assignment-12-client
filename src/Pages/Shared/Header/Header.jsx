@@ -2,17 +2,43 @@ import { Link } from 'react-router-dom';
 import Logo from '../../../assets/logo.png'
 import { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Header = () => {
+    const [users, setUsers] = useState();
 
     const { user, logOut } = useContext(AuthContext);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/users', {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then(data => setUsers(data))
+    }, [])
+
+    const roleUser = users?.filter(u => u.email === user?.email);
+    const matchUserRole = roleUser?.[0]?.role;
+    // console.log(matchUserRole);
+
+
+    const isAdmin = matchUserRole === 'admin';
+    const isInstructor = matchUserRole === 'instructor';
+    const isStudent = matchUserRole === 'student';
 
     const navLists = <>
         <li className='text-lg'><Link to='/'>Home</Link></li>
         <li className='text-lg'><Link to='/instructors'>Instructors</Link></li>
         <li className='text-lg'><Link to='/classes'>Classes</Link></li>
         {
-            user && <li className='text-lg'><Link to='/dashboard/manageclasses'>Dashboard </Link></li>
+            isAdmin && <li className='text-lg'><Link to='/dashboard/manageclasses'>Dashboard </Link></li>
+        }
+        {
+            isInstructor && <li className='text-lg'><Link to='/dashboard/myclasses'>Dashboard </Link></li>
+        }
+        {
+            isStudent && <li className='text-lg'><Link to='/dashboard/myselectedclass'>Dashboard </Link></li>
         }
     </>
 

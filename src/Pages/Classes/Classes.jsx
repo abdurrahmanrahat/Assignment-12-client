@@ -68,7 +68,7 @@ const Classes = () => {
         else {
             // 
             Swal.fire({
-                title: 'Please login to order food',
+                title: 'Please login select the class',
                 icon: 'warning',
                 showCancelButton: true,
                 cancelButtonColor: '#d33',

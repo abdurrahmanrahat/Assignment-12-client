@@ -18,14 +18,14 @@ const Dashboard = () => {
             .then(data => setUsers(data))
     }, [])
 
-    const roleUser = users?.filter(u => u.email === user.email)
+    const roleUser = users?.filter(u => u.email === user?.email)
     const matchUserRole = roleUser?.[0]?.role;
     console.log(matchUserRole);
 
 
     const isAdmin = matchUserRole === 'admin';
-    const isInstructor = false;
-    const isStudent = false;
+    const isInstructor = matchUserRole === 'instructor';
+    const isStudent = matchUserRole === 'student';
 
     const navLists = <>
         {
