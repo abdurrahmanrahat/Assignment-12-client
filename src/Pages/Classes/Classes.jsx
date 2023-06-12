@@ -39,6 +39,7 @@ const Classes = () => {
                 price,
                 seats,
                 totalES,
+                userEmail: user.email
             }
             console.log(selectedClass);
 
