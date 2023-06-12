@@ -2,9 +2,18 @@ import { useEffect } from 'react';
 import ClassesCoverImg from '../../assets/classes-page-cover.jpg';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Classes = () => {
     const [allClasses, setAllClasses] = useState([]);
+
+    const { user } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         fetch('http://localhost:5000/classes', {
@@ -13,6 +22,64 @@ const Classes = () => {
             .then(res => res.json())
             .then(data => setAllClasses(data))
     }, [])
+
+    // handle select class by students
+    const handleSelectClass = sinClass => {
+        console.log(sinClass);
+        const { _id, classNameSpe, classImg, instructorName, instructorEmail, price, seats, totalES } = sinClass;
+
+        if (user && user.email) {
+            // 
+            const selectedClass = {
+                classId: _id,
+                classNameSpe,
+                classImg,
+                instructorName,
+                instructorEmail,
+                price,
+                seats,
+                totalES,
+            }
+            console.log(selectedClass);
+
+            // send this item to the server
+            fetch('http://localhost:5000/selectedClasses', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(selectedClass)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.insertedId){
+                    // refetch here
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Class Successfully Selected',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+        }
+        else {
+            // 
+            Swal.fire({
+                title: 'Please login to order food',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Login'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', { state: { from: location } });
+                }
+            })
+        }
+    }
 
     return (
         <div>
@@ -66,7 +133,7 @@ const Classes = () => {
                                 <td className="text-lg">{sinClass.seats}</td>
                                 <td className="text-lg text-right">${sinClass.price}</td>
                                 <td>
-                                    <button className="btn btn-ghost btn-sm bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Select</button>
+                                    <button onClick={() => handleSelectClass(sinClass)} className="btn btn-ghost btn-sm bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Select</button>
                                 </td>
                             </tr>)
                         }

@@ -1,10 +1,11 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaBook, FaHome, FaListAlt, FaPlusCircle, FaUsers } from "react-icons/fa";
+import { FaBars, FaBook, FaHome, FaListAlt, FaPlusCircle, FaUsers } from "react-icons/fa";
 
 
 const Dashboard = () => {
     const isAdmin = false;
-    const isInstructor = true;
+    const isInstructor = false;
+    const isStudent = true;
 
     const navLists = <>
         {
@@ -19,6 +20,13 @@ const Dashboard = () => {
                 {/* instructor menu */}
                 <li><NavLink to="/dashboard/addaclass"><FaPlusCircle />Add a Class</NavLink></li>
                 <li><NavLink to="/dashboard/myclasses"><FaListAlt />My Classes</NavLink></li>
+            </>
+        }
+        {
+            isStudent && <>
+                {/* student menu */}
+                <li><NavLink to="/dashboard/myselectedclass"><FaPlusCircle />My Selected Classes</NavLink></li>
+                <li><NavLink to="/dashboard/myenrolledclass"><FaBars />My Enrolled Classes</NavLink></li>
             </>
         }
         <li className="md:mx-16 text-lg"><NavLink to="/"><FaHome />Home</NavLink></li>
@@ -41,6 +49,9 @@ const Dashboard = () => {
                         }
                         {
                             isInstructor && <span className="text-xl font-semibold ml-14">Instructor Dashboard</span>
+                        }
+                        {
+                            isStudent && <span className="text-xl font-semibold ml-14">Student Dashboard</span>
                         }
                     </div>
                     <div className="flex-none hidden lg:block">
