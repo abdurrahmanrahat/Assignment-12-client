@@ -9,7 +9,7 @@ const MyClasses = () => {
     const feedback = false;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/classes?email=${user?.email}`, {
+        fetch(`http://localhost:5000/approvedClasses?email=${user?.email}`, {
             method: 'GET'
         })
             .then(res => res.json())
@@ -63,7 +63,7 @@ const MyClasses = () => {
                                         <span className="badge bg-yellow-400 text-lg">{sinClass.classNameSpe}</span>
                                     </div>
                                 </td>
-                                <td className="text-lg">None</td>
+                                <td className="text-lg">Approved</td>
                                 <td className="text-lg">{sinClass.totalES}</td>
                                 <td>
                                     <button className="btn btn-ghost btn-sm bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Update</button>

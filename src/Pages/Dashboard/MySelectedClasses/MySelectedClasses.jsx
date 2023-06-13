@@ -62,7 +62,7 @@ const MySelectedClasses = () => {
             ></SectionTitle>
 
             {/* Table for displaying selected classes */}
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto mb-10">
                 <table className="table shadow-lg text-white text-lg">
                     {/* head */}
                     <thead className="py-2">

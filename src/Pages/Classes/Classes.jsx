@@ -1,27 +1,38 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import ClassesCoverImg from '../../assets/classes-page-cover.jpg';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 const Classes = () => {
-    const [allClasses, setAllClasses] = useState([]);
+    // const [allClasses, setAllClasses] = useState([]);
 
     const { user } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const location = useLocation();
 
-    useEffect(() => {
-        fetch('http://localhost:5000/classes', {
-            method: 'GET'
-        })
-            .then(res => res.json())
-            .then(data => setAllClasses(data))
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/approvedClasses', {
+    //         method: 'GET'
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => setAllClasses(data))
+    // }, [])
+
+    const { data: classes = [] } = useQuery(['approvedClasses'], async () => {
+        const res = await fetch('http://localhost:5000/approvedClasses')
+        return res.json();
+    },
+    {
+        refetchInterval: 1000,
+    }
+    )
+
 
     // handle select class by students
     const handleSelectClass = sinClass => {
@@ -110,7 +121,7 @@ const Classes = () => {
                     </thead>
                     <tbody>
                         {
-                            allClasses.map((sinClass, index) => <tr
+                            classes.map((sinClass, index) => <tr
                                 key={index}
                                 className="bg-gradient-to-r from-[#FFBD00] to-[#F75DC8] text-white ">
                                 <td>

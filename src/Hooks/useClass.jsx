@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+// import { useContext } from "react";
+// import { AuthContext } from "../Provider/AuthProvider";
 
 
 const useClass = () => {
-    const { user } = useContext(AuthContext);
+    // const { user } = useContext(AuthContext);
 
     const { refetch, isLoading, data: classes = [] } = useQuery({
         queryKey: ['classes'],

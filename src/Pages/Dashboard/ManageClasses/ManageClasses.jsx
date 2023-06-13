@@ -23,9 +23,9 @@ const ManageClasses = () => {
         const res = await fetch('http://localhost:5000/classes')
         return res.json();
     },
-    {
-        refetchInterval: 1000,
-    }
+        {
+            refetchInterval: 1000,
+        }
     )
 
 
@@ -64,6 +64,26 @@ const ManageClasses = () => {
                             refetch();
                         }
                     })
+            })
+    }
+
+    // Handle Deny Class
+    const handleDenyClass = sinClass => {
+        // console.log(sinClass);
+        fetch(`http://localhost:5000/classes/${sinClass._id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Class Successfully Deleted!',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                    refetch();
+                }
             })
     }
 
@@ -123,7 +143,7 @@ const ManageClasses = () => {
                                 <td className="text-lg text-center">{sinClass.totalES}</td>
                                 <td className="text-center">
                                     <button onClick={() => handleApproveClass(sinClass)} className="btn btn-ghost btn-xs bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Approve</button> <br />
-                                    <button className="btn btn-ghost btn-xs bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Deny</button> <br />
+                                    <button onClick={() => handleDenyClass(sinClass)} className="btn btn-ghost btn-xs bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Deny</button> <br />
                                     <button className="btn btn-ghost btn-xs bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Feedback</button>
                                 </td>
                             </tr>)
