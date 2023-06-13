@@ -1,4 +1,5 @@
 import PopularClassSec from "../PopularClassSec/PopularClassSec";
+import PopularInstrucSec from "../PopularInstrucSec/PopularInstrucSec";
 import Carousel from "./Carousel";
 
 
@@ -8,7 +9,8 @@ const Home = () => {
             <Carousel></Carousel>
 
             <PopularClassSec></PopularClassSec>
-            <h2 className="">Home Page</h2>
+
+            <PopularInstrucSec></PopularInstrucSec>
         </div>
     );
 };
