@@ -1,9 +1,11 @@
 
 
 const MyEnrolledClasses = () => {
+
     return (
         <div>
-            <h2>MyEnrolledClasses Page</h2>
+            <h2>MyEnrolledClasses Page: </h2>
+
         </div>
     );
 };

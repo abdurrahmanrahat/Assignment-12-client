@@ -47,7 +47,8 @@ const router = createBrowserRouter([
             // Admin Route
             {
                 path: 'manageclasses',
-                element: <PrivateRoute><ManageClasses></ManageClasses></PrivateRoute>
+                element: <PrivateRoute><ManageClasses></ManageClasses></PrivateRoute>,
+                loader: () => fetch('http://localhost:5000/approvedClasses')
             },
             {
                 path: 'manageusers',

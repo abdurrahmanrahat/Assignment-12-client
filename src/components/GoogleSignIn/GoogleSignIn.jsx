@@ -20,6 +20,7 @@ const GoogleSignIn = () => {
                 const savedUser = {
                     name: loggedInUser.displayName,
                     email: loggedInUser.email,
+                    photo: loggedInUser.photoURL,
                     role: 'student'
                 }
 

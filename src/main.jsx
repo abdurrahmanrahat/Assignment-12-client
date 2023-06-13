@@ -17,13 +17,13 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <div className='max-w-7xl mx-auto'>
-      <AuthProvider>
-        <QueryClientProvider client={queryClient}>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <div className='max-w-7xl mx-auto'>
           <RouterProvider router={router} />
-        </QueryClientProvider>
-      </AuthProvider>
-    </div>
+        </div>
+      </QueryClientProvider>
+    </AuthProvider>
   </React.StrictMode>,
 )
 

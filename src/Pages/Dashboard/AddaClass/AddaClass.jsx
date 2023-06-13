@@ -57,7 +57,6 @@ const AddaClass = () => {
                                 text: 'New Class successfully pushed',
                                 icon: 'success',
                                 confirmButtonText: 'Cool'
-                                // setTimeout: 1000
                             })
                         }
                     })

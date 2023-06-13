@@ -20,7 +20,7 @@ const Dashboard = () => {
 
     const roleUser = users?.filter(u => u.email === user?.email)
     const matchUserRole = roleUser?.[0]?.role;
-    console.log(matchUserRole);
+    // console.log(matchUserRole);
 
 
     const isAdmin = matchUserRole === 'admin';
