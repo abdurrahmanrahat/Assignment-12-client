@@ -38,7 +38,7 @@ const PopularInstrucSec = () => {
                 <div className="">
                     {
                         instructors.slice(0, 6).map(instructor => <SwiperSlide key={instructor._id}>
-                            <img src={instructor.photo} style={{ width: '400px', height: '480px' }} alt="" />
+                            <img src={instructor.photo} className="object-cover w-full h-full cursor-pointer" alt="" />
                             <h2 className="text-center text-3xl font-semibold -mt-24 text-white">{instructor.name}</h2>
                         </SwiperSlide>)
                     }

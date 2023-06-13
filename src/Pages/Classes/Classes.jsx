@@ -96,7 +96,7 @@ const Classes = () => {
     return (
         <div>
             <div>
-                <img src={ClassesCoverImg} className=' h-screen w-screen' alt="" />
+                <img src={ClassesCoverImg} className='md:h-screen w-screen' alt="" />
             </div>
             {/* title */}
             <SectionTitle
