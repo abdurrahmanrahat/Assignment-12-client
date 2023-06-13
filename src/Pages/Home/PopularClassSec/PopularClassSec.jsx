@@ -22,7 +22,7 @@ const PopularClassSec = () => {
                     approvedClasses.slice(0, 6).map(appClass => <div
                         key={appClass._id}
                         className="card card-compact w-96 bg-base-100 shadow-xl">
-                        <figure><img src={appClass.classImg} className="" alt="Shoes" /></figure>
+                        <figure><img src={appClass.classImg} className="hover:scale-110 duration-500" alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{appClass.classNameSpe}</h2>
                         </div>
