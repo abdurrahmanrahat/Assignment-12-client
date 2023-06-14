@@ -94,7 +94,7 @@ const ManageUsers = () => {
             ></SectionTitle>
 
             {/* Table Here */}
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto mb-20">
                 <table className="table shadow-lg text-white text-lg">
                     {/* head */}
                     <thead className="py-2">

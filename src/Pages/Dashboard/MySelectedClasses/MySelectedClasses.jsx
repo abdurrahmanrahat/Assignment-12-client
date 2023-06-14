@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MySelectedClasses = () => {
     const [studentSelectedClasses, setStudentSelectedClasses] = useState([]);
@@ -102,7 +103,9 @@ const MySelectedClasses = () => {
                                 <td className="text-lg">{singleClass.instructorName}</td>
                                 <td className="text-lg">${singleClass.price}</td>
                                 <td>
-                                    <button className="btn btn-ghost btn-sm bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Pay</button>
+                                    <Link to={{ pathname: '/dashboard/payment', state: singleClass.price }}>
+                                        <button className="btn btn-ghost btn-sm bg-[#FFBD00] hover:bg-[#0E0C1A] text-black hover:text-white">Pay</button>
+                                    </Link>
                                 </td>
                                 <td>
                                     <button onClick={() => handleDeleteClass(singleClass)} className="btn btn-ghost btn-sm bg-[#0E0C1A] hover:bg-[#0E0C1A] text-white hover:text-white">Delete</button>
