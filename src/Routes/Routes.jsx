@@ -54,7 +54,7 @@ const router = createBrowserRouter([
             {
                 path: 'manageclasses',
                 element: <PrivateRoute><ManageClasses></ManageClasses></PrivateRoute>,
-                loader: () => fetch('http://localhost:5000/approvedClasses')
+                loader: () => fetch('https://assignment-12-server-lyart-xi.vercel.app/approvedClasses')
             },
             {
                 path: 'manageusers',

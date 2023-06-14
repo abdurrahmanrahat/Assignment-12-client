@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 const PopularInstrucSec = () => {
 
     const { data: allUsers = [] } = useQuery(['users'], async () => {
-        const res = await fetch('http://localhost:5000/users')
+        const res = await fetch('https://assignment-12-server-lyart-xi.vercel.app/users')
         return res.json();
     })
 

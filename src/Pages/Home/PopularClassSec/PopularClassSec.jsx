@@ -4,7 +4,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 const PopularClassSec = () => {
 
     const { data: approvedClasses = [] } = useQuery(['approvedClasses'], async () => {
-        const res = await fetch('http://localhost:5000/approvedClasses')
+        const res = await fetch('https://assignment-12-server-lyart-xi.vercel.app/approvedClasses')
         return res.json();
     })
 

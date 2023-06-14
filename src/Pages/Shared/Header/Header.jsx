@@ -12,7 +12,7 @@ const Header = () => {
     const { user, logOut } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users', {
+        fetch('https://assignment-12-server-lyart-xi.vercel.app/users', {
             method: 'GET'
         })
             .then(res => res.json())

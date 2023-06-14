@@ -14,7 +14,7 @@ const MySelectedClasses = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/selectedClasses?email=${user?.email}`, {
+        fetch(`https://assignment-12-server-lyart-xi.vercel.app/selectedClasses?email=${user?.email}`, {
             method: 'GET'
         })
             .then(res => res.json())
@@ -34,7 +34,7 @@ const MySelectedClasses = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/selectedClasses/${singleClass._id}`, {
+                fetch(`https://assignment-12-server-lyart-xi.vercel.app/selectedClasses/${singleClass._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

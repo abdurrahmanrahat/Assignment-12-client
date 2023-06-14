@@ -29,7 +29,7 @@ const CheckOutForm = () => {
 
     // call backed for posting
     useEffect(() => {
-        axios.post('http://localhost:5000/create-payment-intent', { price })
+        axios.post('https://assignment-12-server-lyart-xi.vercel.app/create-payment-intent', { price })
             .then(res => {
                 // console.log(res.data.clientSecret);
                 setClientSecret(res.data.clientSecret);

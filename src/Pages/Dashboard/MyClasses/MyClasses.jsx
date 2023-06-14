@@ -9,7 +9,7 @@ const MyClasses = () => {
     const feedback = false;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/approvedClasses?email=${user?.email}`, {
+        fetch(`https://assignment-12-server-lyart-xi.vercel.app/approvedClasses?email=${user?.email}`, {
             method: 'GET'
         })
             .then(res => res.json())

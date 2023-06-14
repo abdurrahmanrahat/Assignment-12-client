@@ -12,7 +12,7 @@ const ManageClasses = () => {
 
     // get data from classes collection
     // useEffect(() => {
-    //     fetch('http://localhost:5000/classes', {
+    //     fetch('https://assignment-12-server-lyart-xi.vercel.app/classes', {
     //         method: 'GET'
     //     })
     //         .then(res => res.json())
@@ -20,7 +20,7 @@ const ManageClasses = () => {
     // }, [])
 
     const { data: classes = [], refetch } = useQuery(['classes'], async () => {
-        const res = await fetch('http://localhost:5000/classes')
+        const res = await fetch('https://assignment-12-server-lyart-xi.vercel.app/classes')
         return res.json();
     },
         {
@@ -36,7 +36,7 @@ const ManageClasses = () => {
         // console.log('Already Approved class', alreadyApproved);
         // return;
 
-        fetch('http://localhost:5000/approvedClasses', {
+        fetch('https://assignment-12-server-lyart-xi.vercel.app/approvedClasses', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -53,7 +53,7 @@ const ManageClasses = () => {
                         confirmButtonText: 'Cool'
                     })
                 }
-                fetch(`http://localhost:5000/classes/${sinClass._id}`, {
+                fetch(`https://assignment-12-server-lyart-xi.vercel.app/classes/${sinClass._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -70,7 +70,7 @@ const ManageClasses = () => {
     // Handle Deny Class
     const handleDenyClass = sinClass => {
         // console.log(sinClass);
-        fetch(`http://localhost:5000/classes/${sinClass._id}`, {
+        fetch(`https://assignment-12-server-lyart-xi.vercel.app/classes/${sinClass._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

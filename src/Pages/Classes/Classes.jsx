@@ -17,7 +17,7 @@ const Classes = () => {
     const location = useLocation();
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/approvedClasses', {
+    //     fetch('https://assignment-12-server-lyart-xi.vercel.app/approvedClasses', {
     //         method: 'GET'
     //     })
     //         .then(res => res.json())
@@ -25,7 +25,7 @@ const Classes = () => {
     // }, [])
 
     const { data: classes = [] } = useQuery(['approvedClasses'], async () => {
-        const res = await fetch('http://localhost:5000/approvedClasses')
+        const res = await fetch('https://assignment-12-server-lyart-xi.vercel.app/approvedClasses')
         return res.json();
     },
     {
@@ -55,7 +55,7 @@ const Classes = () => {
             console.log(selectedClass);
 
             // send this item to the server
-            fetch('http://localhost:5000/selectedClasses', {
+            fetch('https://assignment-12-server-lyart-xi.vercel.app/selectedClasses', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
