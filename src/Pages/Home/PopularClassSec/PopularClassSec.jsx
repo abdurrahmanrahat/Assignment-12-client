@@ -8,6 +8,8 @@ const PopularClassSec = () => {
         return res.json();
     })
 
+    const currentMode = localStorage.getItem('theme');
+
     return (
         <div className="my-24">
             {/* Section Title */}
@@ -24,7 +26,7 @@ const PopularClassSec = () => {
                         className="card card-compact w-96 bg-base-100 shadow-xl">
                         <figure><img src={appClass.classImg} className="hover:scale-110 duration-500" alt="Shoes" /></figure>
                         <div className="card-body">
-                            <h2 className="card-title">{appClass.classNameSpe}</h2>
+                            <h2 className={`card-title ${currentMode == 'dark' && 'text-black'}`}>{appClass.classNameSpe}</h2>
                         </div>
                     </div>)
                 }

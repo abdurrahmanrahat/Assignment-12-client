@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        dark: '#333',
+        light: '#f9f9f9',
+      },
+    },
   },
   plugins: [require("daisyui")],
 }

@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import ThemeToggle from '../../../components/ThemeToggle/ThemeToggle';
 
 const Header = () => {
     const [users, setUsers] = useState();
@@ -69,6 +70,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+                <span className='mr-4'><ThemeToggle></ThemeToggle></span>
                 {
                     user ? <>
                         <img className='w-12 rounded-full mr-4' src={user.photoURL} alt="" />

@@ -2,7 +2,7 @@ import anime from 'animejs';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 
-import animePhoto from '../../../assets/animejs-image.jpg';
+import animePhoto from '../../../assets/animejs-image_notbg.png';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const AnimeJS = () => {
