@@ -1,13 +1,16 @@
 import AnimeJS from "../AnimeJS/AnimeJS";
 import PopularClassSec from "../PopularClassSec/PopularClassSec";
 import PopularInstrucSec from "../PopularInstrucSec/PopularInstrucSec";
-import Carousel from "./Carousel";
+// import Carousel from "./Carousel";
+import SwiperBanner from "./SwiperBanner";
 
 
 const Home = () => {
     return (
         <div>
-            <Carousel></Carousel>
+            {/* <Carousel></Carousel> */}
+
+            <SwiperBanner></SwiperBanner>
 
             <PopularClassSec></PopularClassSec>
 
