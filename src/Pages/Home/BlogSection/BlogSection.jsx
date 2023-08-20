@@ -18,7 +18,7 @@ const BlogSection = () => {
         {dataOfBlog.map((service) => (
           <div
             key={service._id}
-            className="bg-white rounded-lg shadow-xl overflow-hidden transition-transform transform hover:scale-105 p-4"
+            className="rounded-lg shadow-xl overflow-hidden transition-transform transform hover:scale-105 p-4"
           >
             <img
               src={service.image}
@@ -26,10 +26,10 @@ const BlogSection = () => {
               alt="Shoes"
             />
             <div className="p-4">
-              <p className="text-xl font-semibold text-neutral-900">
+              <p className="text-xl font-semibold">
                 {service.title}
               </p>
-              <p className="text-[16px] text-neutral-600 mt-2">
+              <p className="text-[16px] mt-2">
                 {service.description}
               </p>
             </div>
