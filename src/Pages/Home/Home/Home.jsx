@@ -1,4 +1,5 @@
 import AnimeJS from "../AnimeJS/AnimeJS";
+import BlogSection from "../BlogSection/BlogSection";
 import PopularClassSec from "../PopularClassSec/PopularClassSec";
 import PopularInstrucSec from "../PopularInstrucSec/PopularInstrucSec";
 // import Carousel from "./Carousel";
@@ -18,6 +19,9 @@ const Home = () => {
 
             {/* AnimeJS Section */}
             <AnimeJS></AnimeJS>
+
+            {/* blog section */}
+            <BlogSection></BlogSection>
         </div>
     );
 };

@@ -13,7 +13,7 @@ const AnimeJS = () => {
             anime({
                 targets: '.animateImg',
                 scale: 1.3,
-                duration: 800,
+                duration: 2000,
                 easing: 'easeInOutQuad',
                 loop: true,
             });
@@ -39,7 +39,7 @@ const AnimeJS = () => {
                     <h2 className='text-3xl font-bold'>Learn New Language Like <span>Foreign</span></h2>
                     <p>A foreign language might be learned as a second language; however, there is a distinction between the two terms.</p>
                     <div>
-                        <button className='btn text-md bg-[#0E0C1A] hover:bg-[#FFBD00] text-white hover:text-white p-4 animateEle'>Learn More</button>
+                        <button className='btn text-md bg-[#0E0C1A] hover:bg-[#FFBD00] text-white hover:text-white p-4 animateEle border-none'>Learn More</button>
                     </div>
                 </div>
             </div>
