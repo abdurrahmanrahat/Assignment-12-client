@@ -20,8 +20,8 @@ const PopularInstrucSec = () => {
         <div className="mb-24">
             {/* Section Title */}
             <SectionTitle
-                subHeading='See popular'
-                heading='Instructors Section'
+                subHeading='See our'
+                heading='Top Instructors'
             ></SectionTitle>
 
             {/* Top 6 instructors here */}

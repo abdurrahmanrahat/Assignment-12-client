@@ -4,7 +4,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { useState } from "react";
 import { useEffect } from "react";
-import ThemeToggle from "../../../components/ThemeToggle/ThemeToggle";
+// import ThemeToggle from "../../../components/ThemeToggle/ThemeToggle";
+import DarkMoodToggle from "../../../components/DarkMoodToggle/DarkMoodToggle";
 
 const Header = () => {
   const [users, setUsers] = useState();
@@ -100,7 +101,8 @@ const Header = () => {
       </div>
       <div className="navbar-end">
         <span className="hidden md:block mr-4">
-          <ThemeToggle></ThemeToggle>
+          {/* <ThemeToggle></ThemeToggle> */}
+          <DarkMoodToggle></DarkMoodToggle>
         </span>
         {user ? (
           <>
