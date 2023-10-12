@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import instructorCoverImg from "../../assets/instructor-img.jpg";
+// import instructorCoverImg from "../../assets/instructor-img.jpg";
+import instructorBannerImg from "../../assets/banner-pic.png";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import BannerComponent from "../../components/BannerComponent/BannerComponent";
+import Instructor from "./Instructor";
 
 const Instructors = () => {
   const { data: allUsers = [] } = useQuery(["users"], async () => {
@@ -16,7 +18,7 @@ const Instructors = () => {
   return (
     <div>
       <BannerComponent
-        bgCover={instructorCoverImg}
+        bgCover={instructorBannerImg}
         pageName="Instructors"
         headingTitle="Expert Course Mentors"
       />
@@ -27,10 +29,16 @@ const Instructors = () => {
         heading="All Instructors"
       ></SectionTitle>
 
+      {/* all instructors with card */}
+      <div className="my-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {instructors.map((instructor) => (
+          <Instructor key={instructor._id} instructor={instructor}></Instructor>
+        ))}
+      </div>
+
       {/* Table for listing all instructors */}
-      <div className="overflow-x-auto mb-12">
+      {/* <div className="overflow-x-auto mb-12">
         <table className="border-collapse w-full bg-white shadow-lg">
-          {/* Head */}
           <thead className="bg-gray-800 text-white">
             <tr>
               <th className="px-4 py-3 border-b">#</th>
@@ -70,7 +78,7 @@ const Instructors = () => {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   );
 };

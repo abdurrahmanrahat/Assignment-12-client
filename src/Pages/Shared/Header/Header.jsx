@@ -164,7 +164,7 @@ const Header = () => {
                   />
                   <button
                     onClick={handleLogout}
-                    className="text-[17px] px-4 py-2 rounded-sm bg-[#EE9322] hover:bg-[#0E0C1A] text-white border-none"
+                    className="text-[17px] px-4 py-2 rounded-sm bg-[#EE9322] hover:bg-[#0E0C1A] duration-300 text-white border-none"
                   >
                     logOut
                   </button>
@@ -172,7 +172,7 @@ const Header = () => {
               </>
             ) : (
               <Link to="/login">
-                <button className="text-[17px] px-4 py-2 rounded-sm bg-[#EE9322] hover:bg-[#0E0C1A] text-white border-none">
+                <button className="text-[17px] px-4 py-2 rounded-sm bg-[#EE9322] hover:bg-[#0E0C1A] duration-300 text-white border-none">
                   Login
                 </button>
               </Link>

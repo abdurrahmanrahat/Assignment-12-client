@@ -1,7 +1,6 @@
-// import { useEffect } from 'react';
-import ClassesCoverImg from "../../assets/classes-page-cover.jpg";
+// import ClassesCoverImg from "../../assets/classes-page-cover.jpg";
+import ClassesBannerImg from "../../assets/student-img.png";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
-// import { useState } from 'react';
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
@@ -111,9 +110,9 @@ const Classes = () => {
   return (
     <div>
       <BannerComponent
-        bgCover={ClassesCoverImg}
-        pageName="Instructors"
-        headingTitle="Expert Course Mentors"
+        bgCover={ClassesBannerImg}
+        pageName="Classes"
+        headingTitle="Famous Courses Lists"
       />
 
       {/* title */}
@@ -127,7 +126,7 @@ const Classes = () => {
         <table className="table shadow-lg text-white text-lg ">
           {/* head */}
           <thead className="py-2">
-            <tr className="bg-gradient-to-r from-[#0b0016] to-[#0a0115e7] text-white text-lg">
+            <tr className="bg-gray-900 text-white text-lg">
               <th className="py-4">#</th>
               <th className="text-left">Photo</th>
               <th className="text-left">Class Name</th>
@@ -141,7 +140,7 @@ const Classes = () => {
             {classes.map((sinClass, index) => (
               <tr
                 key={index}
-                className="bg-gradient-to-r from-[#FFBD00] to-[#F75DC8] text-white "
+                className="bg-gradient-to-r from-[#FFBD00] to-[#EE9322] text-white "
               >
                 <td>{index + 1}</td>
                 <td>
